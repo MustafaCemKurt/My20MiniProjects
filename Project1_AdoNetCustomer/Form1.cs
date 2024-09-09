@@ -18,9 +18,10 @@ namespace Project1_AdoNetCustomer
             InitializeComponent();
         }
 
+        SqlConnection sqlConnection = new SqlConnection("server=MUSTAFACK1365;initial catalog=DbCustomer;integrated security=true"); // servera bağlanıyoruz
         private void btnList_Click(object sender, EventArgs e)
         {
-            SqlConnection sqlConnection = new SqlConnection("server=MUSTAFACK1365;initial catalog=DbCustomer;integrated security=true"); // servera bağlanıyoruz
+           
                                                                                                                                           
 
             sqlConnection.Open();
@@ -35,6 +36,21 @@ namespace Project1_AdoNetCustomer
 
             // komutlar sonu 
             sqlConnection.Close();
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            sqlConnection.Open();
+
+            SqlCommand command = new SqlCommand("insert into TblCity(CityName,CityCountry) values (@cityName,@cityCountry)", sqlConnection); // sql tarafında çalışacak komutu yazıyoruz
+            command.Parameters.AddWithValue("@cityName",txtCityName.Text);   
+            command.Parameters.AddWithValue("@cityCountry",txtCityCountry.Text);   
+            command.ExecuteNonQuery();  // T-SQL etkilenen kayıt sayılarını döndürür. değişiklikleri kaydediyor
+
+            sqlConnection.Close ();
+            MessageBox.Show("Şehir başarılı bir şekilde eklendi ");
+
+
         }
     }
 }
