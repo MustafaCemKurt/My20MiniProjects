@@ -1,6 +1,6 @@
 ﻿namespace Project1_AdoNetCustomer
 {
-    partial class Form1
+    partial class FrmCity
     {
         /// <summary>
         /// Required designer variable.
@@ -160,7 +160,7 @@
             this.label1.TabIndex = 13;
             this.label1.Text = "Şehir Id  : ";
             // 
-            // Form1
+            // FrmCity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -178,7 +178,8 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtCityId);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "FrmCity";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Şehir Takip Formu ";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

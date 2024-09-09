@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Project1_AdoNetCustomer
 {
-    public partial class Form1 : Form
+    public partial class FrmCity : Form
     {
-        public Form1()
+        public FrmCity()
         {
             InitializeComponent();
         }
