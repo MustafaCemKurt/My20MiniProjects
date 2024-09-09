@@ -65,5 +65,17 @@ namespace Project1_AdoNetCustomer
 
             MessageBox.Show("Şehir başarılı bir şekilde silindi ","Uyarı",MessageBoxButtons.OK,MessageBoxIcon.Information);
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            sqlConnection.Open ();
+            SqlCommand command = new SqlCommand("update TblCity Set CityName=@cityName,CityCountry=@cityCountry where CityId=@cityId",sqlConnection);
+            command.Parameters.AddWithValue("@cityId", txtCityId.Text); 
+            command.Parameters.AddWithValue("@cityName", txtCityName.Text);
+            command.Parameters.AddWithValue("@cityCountry", txtCityCountry.Text);
+            command.ExecuteNonQuery (); 
+            sqlConnection.Close ();
+            MessageBox.Show("Şehir başarılı bir şekilde güncellendi ", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
