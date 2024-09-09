@@ -31,8 +31,9 @@ namespace Project1_AdoNetCustomer
             SqlDataAdapter adapter = new SqlDataAdapter(command );  // adapter bir köprü görevi görecek 
 
             DataTable dt = new DataTable(); // veriyi dolduıruyoruz
+               adapter.Fill( dt );
             dataGridView1.DataSource = dt;  // veri kaynağını belirtiyoruz . 
-            adapter.Fill( dt );
+            
 
             // komutlar sonu 
             sqlConnection.Close();
@@ -76,6 +77,24 @@ namespace Project1_AdoNetCustomer
             command.ExecuteNonQuery (); 
             sqlConnection.Close ();
             MessageBox.Show("Şehir başarılı bir şekilde güncellendi ", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            sqlConnection.Open();
+            SqlCommand command = new SqlCommand("select * from TblCity where CityName=@cityName",sqlConnection);
+            command.Parameters.AddWithValue("@cityName", txtCityName.Text);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);  // adapter bir köprü görevi görecek 
+
+            DataTable dt = new DataTable(); // veriyi dolduıruyoruz
+              adapter.Fill(dt);
+            dataGridView1.DataSource = dt;  // veri kaynağını belirtiyoruz . 
+           
+
+            // komutlar sonu 
+            sqlConnection.Close();
+
+
         }
     }
 }
