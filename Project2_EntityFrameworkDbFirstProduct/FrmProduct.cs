@@ -23,6 +23,10 @@ namespace Project2_EntityFrameworkDbFirstProduct
         }
         private void FrmProduct_Load(object sender, EventArgs e)
         {
+            var values=db.TblCategory.ToList();
+            cmbProductCategory.DisplayMember = "CategoryName";
+            cmbProductCategory.ValueMember = "CategoryId";
+            cmbProductCategory.DataSource  = values;
 
         }
 
