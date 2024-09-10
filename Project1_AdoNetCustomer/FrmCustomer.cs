@@ -120,6 +120,24 @@ namespace Project1_AdoNetCustomer
             MessageBox.Show("Müşteri başarıyla güncellendi");
 
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            sqlConnection.Open();
+
+            // komutlar başlangıcı 
+            SqlCommand command = new SqlCommand("select CustomerId,CustomerName,CustomerSurname,CustomerBalance,CustomerStatus,CityName from TblCustomer inner join TblCity on TblCity.CityId=TblCustomer.CustomerCity where CustomerName=@customerName ", sqlConnection);
+            command.Parameters.AddWithValue("@customerName", txtCustomerName.Text);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);  // adapter bir köprü görevi görecek 
+
+            DataTable dt = new DataTable(); // veriyi dolduıruyoruz
+            adapter.Fill(dt);
+            dataGridView1.DataSource = dt;  // veri kaynağını belirtiyoruz . 
+
+
+            // komutlar sonu 
+            sqlConnection.Close();
+        }
     }
 }
 
