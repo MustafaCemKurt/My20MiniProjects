@@ -83,6 +83,18 @@ namespace Project1_AdoNetCustomer
 
 
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            sqlConnection.Open();
+            SqlCommand command = new SqlCommand("Delete From TblCustomer where CustomerId=@customerId", sqlConnection);
+            command.Parameters.AddWithValue("@customerId", txtCustomerId.Text);
+            command.ExecuteNonQuery();
+
+            sqlConnection.Close();
+
+            MessageBox.Show("Müşteri başarılı bir şekilde silindi ", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
 
