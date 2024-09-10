@@ -75,5 +75,11 @@ namespace Project2_EntityFrameworkDbFirstProduct
             db.SaveChanges();
             ProductList();
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            var values=db.TblProduct.Where(x=>x.ProductName==txtProductName.Text).ToList();
+            dataGridView1.DataSource = values;
+        }
     }
 }
