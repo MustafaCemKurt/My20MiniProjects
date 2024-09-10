@@ -95,6 +95,31 @@ namespace Project1_AdoNetCustomer
 
             MessageBox.Show("Müşteri başarılı bir şekilde silindi ", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            sqlConnection.Open();
+            SqlCommand command = new SqlCommand("update TblCustomer Set CustomerName=@customerName,CustomerSurname=@customerSurname,CustomerCity=@customerCity,CustomerBalance=@customerBalance,CustomerStatus=@customerStatus where CustomerId=@customerId ", sqlConnection);
+            command.Parameters.AddWithValue("@customerName", txtCustomerName.Text);
+            command.Parameters.AddWithValue("@customerSurname", txtCustomerSurname.Text);
+            command.Parameters.AddWithValue("@customerCity", cmbCity.SelectedValue);
+            command.Parameters.AddWithValue("@customerBalance", txtBalance.Text);
+            command.Parameters.AddWithValue("@customerId", txtCustomerId.Text);
+            if (rdbActive.Checked)
+            {
+                command.Parameters.AddWithValue("@customerStatus", true);
+
+            }
+            if (rdbPassive.Checked)
+            {
+                command.Parameters.AddWithValue("@customerStatus", false);
+
+            }
+            command.ExecuteNonQuery();
+            sqlConnection.Close();
+            MessageBox.Show("Müşteri başarıyla güncellendi");
+
+        }
     }
 }
 
